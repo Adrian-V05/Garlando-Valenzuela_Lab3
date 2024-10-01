@@ -1,0 +1,90 @@
+import java.util.Scanner;
+
+class Clock {
+    static double conversion;
+    static double value;
+    static final double num = 60;
+
+    public static double secondstoMinutes() {
+        return value / num;
+    }
+
+    public static double secondstoHours() {
+        return value / (num * num);
+    }
+
+    public static double minutestoSeconds() {
+        return value * num;
+    }
+
+    public static double minutestoHours() {
+        return value / num;
+    }
+
+    public static double hourstoSeconds() {
+        return value * num * num;
+    }
+
+    public static double hourstoMinutes() {
+        return value * num;
+    }
+
+    public static void getInput() {
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("Enter the Value: ");
+        value = userInput.nextDouble();
+    }
+
+    static class Choices {
+        public static void outputChoices() {
+            System.out.println("[1] Seconds to Minutes");
+            System.out.println("[2] Seconds to Hours");
+            System.out.println("[3] Minutes to Seconds");
+            System.out.println("[4] Minutes to Hours");
+            System.out.println("[5] Hours to Seconds");
+            System.out.println("[6] Hours to Minutes");
+        }
+    }
+
+    public static void main(String[] args) {
+        Choices time = new Choices();
+        Scanner convert = new Scanner(System.in);
+        String input;
+
+        do {
+            time.outputChoices();
+            System.out.println("Choose the Conversion: ");
+            conversion = convert.nextDouble();
+            getInput();
+
+            switch ((int) conversion) {
+                case 1:
+                    System.out.println("Seconds to Minutes: " + secondstoMinutes());
+                    break;
+                case 2:
+                    System.out.println("Seconds to Hours: " + secondstoHours());
+                    break;
+                case 3:
+                    System.out.println("Minutes to Seconds: " + minutestoSeconds());
+                    break;
+                case 4:
+                    System.out.println("Minutes to Hours: " + minutestoHours());
+                    break;
+                case 5:
+                    System.out.println("Hours to Seconds: " + hourstoSeconds());
+                    break;
+                case 6:
+                    System.out.println("Hours to Minutes: " + hourstoMinutes());
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please choose a valid conversion.");
+            }
+
+            System.out.println("Do you want to convert time? (Y/N):");
+            input = convert.next();
+            System.out.println("-----------------------------------------------------------------------------------------");
+        } while (input.equalsIgnoreCase("Y"));
+
+        convert.close();
+    }
+}
